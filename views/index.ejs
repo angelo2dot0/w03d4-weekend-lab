@@ -37,7 +37,17 @@
 			</form>
 			<hr>
 			<!-- Adding an unorderded list element that will later be used for making a list of posts using HTML strings, JavaScript and jQuery (and Object Oriented Programming!) that render to the DOM. -->
-			<ul id="post-list"></ul>
+			<ul id="post-list">
+
+     <% for (var i = 0; i<postArray.length; i++) { %>
+     <li class='post'>
+     <%= postArray[i].item %>
+     <span class='label label-default'></span>
+     <button data-id="<%=postArray[i].id%>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+     </li>
+     <% } %>
+     
+      </ul>
         </div>
       </div>
     </div>

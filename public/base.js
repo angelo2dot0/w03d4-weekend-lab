@@ -1,3 +1,5 @@
+//CLIENT-SIDE JAVASCRIPT
+
 console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
@@ -24,7 +26,30 @@ $(document).ready(function(){
 	// submit form for new post
 	$newPost.on('submit', function(event) {
 		event.preventDefault();
+		// need to grab the form data here
+		// before sending it in AJAX request
+		text = $(this).serialize();
 
+	$.ajax({
+		url: '/api/post',
+		type: "POST",
+		data: text,
+	})
+	.done(function(data){
+		$(".postArrayList").append('<li class="postArray">' + data.name + ' ----' + data.body + '</li>');
+	})
+	.fail(function(data){
+		console.log(data);
+	});
+
+	$.ajax({
+		url: '/api/post/:id',
+		type: "DELETE",
+		data: text,
+	});
+	done(function(msg) {
+		alert("Data deleted: " + msg );
+	});
 		// create new post object based on data input in the form
 		var postItem = $('#post-item').val();
 		var postObject = {item: postItem};
